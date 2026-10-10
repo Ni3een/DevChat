@@ -14,9 +14,17 @@ import { consumeMessages } from "./helper.js";
 
 const app: Application = express();
 const server=createServer(app);
+
+// CORS origins
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://admin.socket.io",
+  process.env.FRONTEND_URL || "http://localhost:3000"
+];
+
 const io=new Server(server,{
   cors:{
-    origin:["http://localhost:3000","https://admin.socket.io"],
+    origin: allowedOrigins,
     credentials:true
   },
   adapter:createAdapter(redis),
@@ -28,8 +36,16 @@ instrument(io,{
 setupSocket(io);
 export {io}
 const PORT = process.env.PORT || 7000;
+
+// CORS configuration
+const corsOptions = {
+  origin: allowedOrigins,
+  credentials: true,
+  optionsSuccessStatus: 200
+};
+
 // * Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

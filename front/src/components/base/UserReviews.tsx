@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
+import Image from "next/image";
 export default function UserReviews() {
   return (
     <section className="p-12 bg-gray-50">
@@ -12,9 +13,11 @@ export default function UserReviews() {
             “QuickChat is a game-changer! The fastest way to start a chat.”
           </p>
           <div className="mt-4">
-            <img
+            <Image
               src="/images/user1.png"
               alt="User 1"
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-full mx-auto"
             />
             <div className="mt-2 text-gray-800">John Doe, Developer</div>
@@ -25,9 +28,11 @@ export default function UserReviews() {
             “The encryption is top-notch. I feel secure using QuickChat.”
           </p>
           <div className="mt-4">
-            <img
+            <Image
               src="/images/user2.png"
               alt="User 2"
+              width={48}
+              height={48}
               className="w-12 h-12 rounded-full mx-auto"
             />
             <div className="mt-2 text-gray-800">Jane Smith, Designer</div>
